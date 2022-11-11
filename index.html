@@ -6,25 +6,32 @@
     <link rel="stylesheet" type="text/css" href="./index.css" />
   </head>
   <body>
-    <div id="map"></div>
+    <div class="wrapper" id="wrapper">
+      <div id="map"></div>
 
-    <!-- 
-     The `defer` attribute causes the callback to execute after the full HTML
-     document has been parsed. For non-blocking uses, avoiding race conditions,
-     and consistent behavior across browsers, consider loading using Promises
-     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-    -->
+      <div id="streetView">
+        <iframe
+          src=""
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="iframe"
+        ></iframe>
+      </div>
+    </div>
+
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
       defer
     ></script>
     <script
-      src="https://code.jquery.com/jquery-3.6.1.js"
-      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
     ></script>
-    <script src="./index.js" />
+    <script src="./script.js" />
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+    -->
   </body>
 </html>
 
@@ -34,9 +41,10 @@
   let dict = {
     "Buddhist Monuments at Sanchi": {
       short_desc:
-        "Buddhist Monuments at Sanchi:\n On a hill overlooking the plain and about 40 km from Bhopal, the site of Sanchi comprises a group of Buddhist monuments (monolithic pillars, palaces, temples and monasteries) all in different states of conservation most of which date back to the 2nd and 1st centuries B.C. It is the oldest Buddhist sanctuary in existence and was a major Buddhist centre in India until the 12th century A.D.",
+        "Buddhist Monuments at Sanchi: On a hill overlooking the plain and about 40 km from Bhopal, the site of Sanchi comprises a group of Buddhist monuments (monolithic pillars, palaces, temples and monasteries) all in different states of conservation most of which date back to the 2nd and 1st centuries B.C. It is the oldest Buddhist sanctuary in existence and was a major Buddhist centre in India until the 12th century A.D.",
       longitude: 77.73972,
       latitude: 23.47944,
+      src: "https://www.google.com/maps/embed?pb=!4v1668138507724!6m8!1m7!1sCAoSLEFGMVFpcE5IRFlyYUduNEUxcVl4aFRDQ3YwYlhCdTBYRExELWVsSFlUc29N!2m2!1d23.4809623!2d77.73989759999999!3f163.9571575078391!4f-0.3990106385004566!5f1.9587109090973311",
       id: 0,
     },
 
@@ -45,6 +53,7 @@
         "The Chhatrapati Shivaji Terminus, formerly known as Victoria Terminus Station, in Mumbai, is an outstanding example of Victorian Gothic Revival architecture in India, blended with themes deriving from Indian traditional architecture. The building, designed by the British architect F. W. Stevens, became the symbol of Bombay as the Gothic City and the major international mercantile port of India. The terminal was built over 10 years, starting in 1878, according to a High Victorian Gothic design based on late medieval Italian models. Its remarkable stone dome, turrets, pointed arches and eccentric ground plan are close to traditional Indian palace architecture. It is an outstanding example of the meeting of two cultures, as British architects worked with Indian craftsmen to include Indian architectural tradition and idioms thus forging a new style unique to Bombay.",
       longitude: 72.83620278,
       latitude: 18.94012222,
+      src: "https://www.google.com/maps/embed?pb=!4v1668138621159!6m8!1m7!1sTI_fS53TTgfBz5F34jK0aQ!2m2!1d18.93971076190063!2d72.83489692833913!3f69.73005184655952!4f15.180271153520508!5f0.7820865974627469",
       id: 1,
     },
 
@@ -53,6 +62,7 @@
         "On the shores of the Bay of Bengal, bathed in the rays of the rising sun, the temple at Konarak is a monumental representation of the sun god Surya's chariot; its 24 wheels are decorated with symbolic designs and it is led by a team of six horses. Built in the 13th century, it is one of India's most famous Brahman sanctuaries.",
       longitude: 86.09472,
       latitude: 19.8875,
+      src: "https://www.google.com/maps/embed?pb=!4v1668138893823!6m8!1m7!1sCAoSLEFGMVFpcE9mZnBBRnVPQ25PZmlaanF4ZXZZNnJvVmlfb0xTX1Y2VXV2X3Bf!2m2!1d19.8875504!2d86.0945892!3f309.8681501989991!4f7.970542090478574!5f0.7820865974627469",
       id: 2,
     },
 
@@ -61,6 +71,7 @@
         "Nestled high in West Himalaya, India's Valley of Flowers National Park is renowned for its meadows of endemic alpine flowers and outstanding natural beauty. This richly diverse area is also home to rare and endangered animals, including the Asiatic black bear, snow leopard, brown bear and blue sheep. The gentle landscape of the Valley of Flowers National Park complements the rugged mountain wilderness of Nanda Devi National Park. Together they encompass a unique transition zone between the mountain ranges of the Zanskar and Great Himalaya, praised by mountaineers and botanists for over a century and in Hindu mythology for much longer.",
       longitude: 79.66667,
       latitude: 30.71667,
+      src: "https://www.google.com/maps/embed?pb=!4v1668139246985!6m8!1m7!1sCAoSLEFGMVFpcE9MYm1tYWx3YUtsQmxZRzBLOVdWdHBjUWJJZ3JBbFB4M2dYel9Q!2m2!1d30.72804!2d79.605303!3f213.8618799082862!4f17.22811751095047!5f0.7820865974627469",
       id: 3,
     },
 
@@ -69,6 +80,7 @@
         "This National Park in the western part of the Himalayan Mountains in the northern Indian state of Himachal Pradesh is characterized by high alpine peaks, alpine meadows and riverine forests. The 90,540 ha property includes the upper mountain glacial and snow meltwater sources of several rivers, and the catchments of water supplies that are vital to millions of downstream users. The GHNPCA protects the monsoon-affected forests and alpine meadows of the Himalayan front ranges. It is part of the Himalaya biodiversity hotspot and includes twenty-five forest types along with a rich assemblage of fauna species, several of which are threatened. This gives the site outstanding significance for biodiversity conservation.",
       longitude: 77.58333333,
       latitude: 31.83333333,
+      src: "https://www.google.com/maps/embed?pb=!4v1668139360093!6m8!1m7!1sCAoSLEFGMVFpcFBXcnh3SzVQSnBrVjlBUkZXZnpLa2ZUNXlKZGhCSmlzX3puU0xz!2m2!1d31.639028711915095!2d77.41862299752187!3f288.5414432245662!4f3.6698651870583916!5f0.7820865974627469",
       id: 4,
     },
 
@@ -77,6 +89,8 @@
         "These 34 monasteries and temples, extending over more than 2 km, were dug side by side in the wall of a high basalt cliff, not far from Aurangabad, in Maharashtra. Ellora, with its uninterrupted sequence of monuments dating from A.D. 600 to 1000, brings the civilization of ancient India to life. Not only is the Ellora complex a unique artistic creation and a technological exploit but, with its sanctuaries devoted to Buddhism, Hinduism and Jainism, it illustrates the spirit of tolerance that was characteristic of ancient India.",
       longitude: 75.17917,
       latitude: 20.02639,
+      src: "https://www.google.com/maps/embed?pb=!4v1668139467870!6m8!1m7!1scfZZOqZX3cgAAAGu4okmYQ!2m2!1d20.02587113822781!2d75.17796886571057!3f161.3485419213197!4f2.18403575113598!5f0.7820865974627469",
+
       id: 5,
     },
 
@@ -85,6 +99,7 @@
         "Built during the second half of the 16th century by the Emperor Akbar, Fatehpur Sikri (the City of Victory) was the capital of the Mughal Empire for only some 10 years. The complex of monuments and temples, all in a uniform architectural style, includes one of the largest mosques in India, the Jama Masjid.",
       longitude: 77.66417,
       latitude: 27.09444,
+      src: "https://www.google.com/maps/embed?pb=!4v1668139539379!6m8!1m7!1sYJK1HncH15zqk2OfQSZeZQ!2m2!1d27.09696377613091!2d77.66614942999365!3f157.08232658231165!4f-14.572965552274525!5f0.7820865974627469",
       id: 6,
     },
 
@@ -93,6 +108,7 @@
         "Near the gardens of the Taj Mahal stands the important 16th-century Mughal monument known as the Red Fort of Agra. This powerful fortress of red sandstone encompasses, within its 2.5-km-long enclosure walls, the imperial city of the Mughal rulers. It comprises many fairy-tale palaces, such as the Jahangir Palace and the Khas Mahal, built by Shah Jahan; audience halls, such as the Diwan-i-Khas; and two very beautiful mosques.",
       longitude: 78.03333333,
       latitude: 27.18333333,
+      src: "https://www.google.com/maps/embed?pb=!4v1668139736927!6m8!1m7!1sUEXrTEXfeoy9mBtoIdhzuQ!2m2!1d27.17986333592955!2d78.02176836418852!3f293.65000385327494!4f-17.14526207316355!5f0.7820865974627469",
       id: 7,
     },
 
@@ -101,6 +117,7 @@
         "This tomb, built in 1570, is of particular cultural significance as it was the first garden-tomb on the Indian subcontinent. It inspired several major architectural innovations, culminating in the construction of the Taj Mahal.",
       longitude: 77.25056,
       latitude: 28.59333,
+      src: "https://www.google.com/maps/embed?pb=!4v1668139827069!6m8!1m7!1sCAoSLEFGMVFpcE5mV3lmcV9PY2s5dkliVzNTNWl2R3JZVHNpWGduTDdSVnFUTkdG!2m2!1d28.59330095576052!2d77.2508067637682!3f358.0554400190914!4f-16.82934992118969!5f0.7820865974627469",
       id: 8,
     },
 
@@ -109,6 +126,7 @@
         "Pattadakal, in Karnataka, represents the high point of an eclectic art which, in the 7th and 8th centuries under the Chalukya dynasty, achieved a harmonious blend of architectural forms from northern and southern India. An impressive series of nine Hindu temples, as well as a Jain sanctuary, can be seen there. One masterpiece from the group stands out  the Temple of Virupaksha, built c. 740 by Queen Lokamahadevi to commemorate her husband's victory over the kings from the South.",
       longitude: 75.81667,
       latitude: 15.94833,
+      src: "https://www.google.com/maps/embed?pb=!4v1668139827069!6m8!1m7!1sCAoSLEFGMVFpcE5mV3lmcV9PY2s5dkliVzNTNWl2R3JZVHNpWGduTDdSVnFUTkdG!2m2!1d28.59330095576052!2d77.2508067637682!3f358.0554400190914!4f-16.82934992118969!5f0.7820865974627469",
       id: 9,
     },
 
@@ -117,6 +135,7 @@
         "The 'City of Caves', on an island in the Sea of Oman close to Bombay, contains a collection of rock art linked to the cult of Shiva. Here, Indian art has found one of its most perfect expressions, particularly the huge high reliefs in the main cave.",
       longitude: 72.93583,
       latitude: 18.96667,
+      src: "https://www.google.com/maps/embed?pb=!4v1668140152462!6m8!1m7!1smgbVfTcXxX8AAAQWrmRvxQ!2m2!1d18.96338801882232!2d72.93135093394812!3f272.04287968897955!4f4.196428896777846!5f0.7820865974627469",
       id: 10,
     },
 
@@ -125,6 +144,7 @@
         "The 'City of Caves', on an island in the Sea of Oman close to Bombay, contains a collection of rock art linked to the cult of Shiva. Here, Indian art has found one of its most perfect expressions, particularly the huge high reliefs in the main cave.",
       longitude: 79.92222,
       latitude: 24.85222,
+      src: "https://www.google.com/maps/embed?pb=!4v1668140271862!6m8!1m7!1sCAoSLEFGMVFpcE8tcHRVZWNOT0dwYTZNOG5RSWNvWGpmTTdaYnNvemZfTEpQajAt!2m2!1d24.8467667!2d79.9302883!3f264.0065063140304!4f1.193091916643482!5f0.7820865974627469",
       id: 11,
     },
 
@@ -133,6 +153,7 @@
         "On a gentle slope in the foothills of the Himalayas, where wooded hills give way to alluvial grasslands and tropical forests, the Manas sanctuary is home to a great variety of wildlife, including many endangered species, such as the tiger, pygmy hog, Indian rhinoceros and Indian elephant.",
       longitude: 91.03055556,
       latitude: 26.725,
+      src: "https://www.google.com/maps/embed?pb=!4v1668140417637!6m8!1m7!1sCAoSLEFGMVFpcE1SZmlLcHdoQ0pUcmJSaFlleWI3T0VlOUxZVEZ5UWcycHR0UkJU!2m2!1d26.6594227!2d91.0011311!3f240.49432176732415!4f2.2816828416359556!5f0.7820865974627469",
       id: 12,
     },
 
@@ -141,6 +162,7 @@
         "The Jantar Mantar, in Jaipur, is an astronomical observation site built in the early 18th century. It includes a set of some 20 main fixed instruments. They are monumental examples in masonry of known instruments but which in many cases have specific characteristics of their own. Designed for the observation of astronomical positions with the naked eye, they embody several architectural and instrumental innovations. This is the most significant, most comprehensive, and the best preserved of India's historic observatories. It is an expression of the astronomical skills and cosmological concepts of the court of a scholarly prince at the end of the Mughal period.",
       longitude: 75.825,
       latitude: 26.92472222,
+      src: "https://www.google.com/maps/embed?pb=!4v1668140576088!6m8!1m7!1sCAoSLEFGMVFpcE1jbWtwbXU5YTNrVk9YUEJVUmQ5cHVUZFVaTlVNT0p3X3FuM2Nk!2m2!1d26.92476343611828!2d75.82455597668647!3f188.45709827190586!4f-11.983140077422519!5f0.7820865974627469",
       id: 13,
     },
 
@@ -149,6 +171,7 @@
         "This former duck-hunting reserve of the Maharajas is one of the major wintering areas for large numbers of aquatic birds from Afghanistan, Turkmenistan, China and Siberia. Some 364 species of birds, including the rare Siberian crane, have been recorded in the park.",
       longitude: 77.50861111,
       latitude: 27.15888889,
+      src: "https://www.google.com/maps/embed?pb=!4v1668140706550!6m8!1m7!1sCAoSLEFGMVFpcFBHWjNmSWVXQTlEb0ZZdVBfalNLZkhOUGd4eEFpemF1OXVoRFJj!2m2!1d27.159269!2d77.5231999!3f184.18301102230745!4f-6.378348811932284!5f0.7820865974627469",
       id: 14,
     },
 
@@ -157,6 +180,7 @@
         "Built in the early 13th century a few kilometres south of Delhi, the red sandstone tower of Qutb Minar is 72.5 m high, tapering from 2.75 m in diameter at its peak to 14.32 m at its base, and alternating angular and rounded flutings. The surrounding archaeological area contains funerary buildings, notably the magnificent Alai-Darwaza Gate, the masterpiece of Indo-Muslim art (built in 1311), and two mosques, including the Quwwatu'l-Islam, the oldest in northern India, built of materials reused from some 20 Brahman temples.",
       longitude: 77.18528,
       latitude: 28.52583,
+      src: "https://www.google.com/maps/embed?pb=!4v1668140789541!6m8!1m7!1sarWYt4qMpwBruUVhqGaSMA!2m2!1d28.52452104069952!2d77.18557164101844!3f224.93435400869097!4f51.71835987373191!5f0.7820865974627469",
       id: 15,
     },
 
@@ -165,6 +189,7 @@
         "This site includes three railways. The Darjeeling Himalayan Railway was the first, and is still the most outstanding, example of a hill passenger railway. Opened in 1881, its design applies bold and ingenious engineering solutions to the problem of establishing an effective rail link across a mountainous terrain of great beauty. The construction of the Nilgiri Mountain Railway, a 46-km long metre-gauge single-track railway in Tamil Nadu State was first proposed in 1854, but due to the difficulty of the mountainous location the work only started in 1891 and was completed in 1908. This railway, scaling an elevation of 326 m to 2,203 m, represented the latest technology of the time. The Kalka Shimla Railway, a 96-km long, single track working rail link built in the mid-19th century to provide a service to the highland town of Shimla is emblematic of the technical and material efforts to disenclave mountain populations through the railway. All three railways are still fully operational.",
       longitude: 76.93583,
       latitude: 11.51028,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141484120!6m8!1m7!1sA1q5zdw9tnYAAARAtEZeFw!2m2!1d27.03748604511526!2d88.26281803740903!3f55.25087493699176!4f10.268908872676832!5f0.7820865974627469",
       id: 16,
     },
 
@@ -173,6 +198,7 @@
         "This group of sanctuaries, founded by the Pallava kings, was carved out of rock along the Coromandel coast in the 7th and 8th centuries. It is known especially for its rathas (temples in the form of chariots), mandapas (cave sanctuaries), giant open-air reliefs such as the famous 'Descent of the Ganges', and the temple of Rivage, with thousands of sculptures to the glory of Shiva.",
       longitude: 93.41666667,
       latitude: 26.66666667,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141730322!6m8!1m7!1sCAoSLEFGMVFpcE1SR0FmMi1qMGdyUTRzZmNtT3dka0V1cGJYR2pkVjZibzkwSHg5!2m2!1d26.57905092160548!2d93.61824958512257!3f287.74668561486754!4f2.5726639958701725!5f0.4000000000000002",
       id: 17,
     },
 
@@ -181,6 +207,7 @@
         "In the heart of Assam, this park is one of the last areas in eastern India undisturbed by a human presence. It is inhabited by the world's largest population of one-horned rhinoceroses, as well as many mammals, including tigers, elephants, panthers and bears, and thousands of birds.",
       longitude: 80.19167,
       latitude: 12.61667,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141316815!6m8!1m7!1sCAoSLEFGMVFpcE16cmVLSUY5SGw2UktTRDhmUTNpdGNjdUpCeGJSVGh5Q1pPY3NN!2m2!1d12.6165083!2d80.1996617!3f13.198366813876714!4f1.4763328534812103!5f0.7820865974627469",
       id: 18,
     },
 
@@ -189,6 +216,7 @@
         "In the heart of Assam, this park is one of the last areas in eastern India undisturbed by a human presence. It is inhabited by the world's largest population of one-horned rhinoceroses, as well as many mammals, including tigers, elephants, panthers and bears, and thousands of birds.",
       longitude: 80.19167,
       latitude: 12.61667,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141392868!6m8!1m7!1sCAoSLEFGMVFpcE51MDBfV1F4bm43NENrYS1QY1NOWmFpWTI2RXlveHRnclYwUjZB!2m2!1d27.6672446!2d88.3245556!3f228.77822225573348!4f2.9602578935299277!5f0.7820865974627469",
       id: 19,
     },
 
@@ -197,6 +225,7 @@
         "The Rock Shelters of Bhimbetka are in the foothills of the Vindhyan Mountains on the southern edge of the central Indian plateau. Within massive sandstone outcrops, above comparatively dense forest, are five clusters of natural rock shelters, displaying paintings that appear to date from the Mesolithic Period right through to the historical period. The cultural traditions of the inhabitants of the twenty-one villages adjacent to the site bear a strong resemblance to those represented in the rock paintings.",
       longitude: 77.58333333,
       latitude: 22.92777778,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141486374!6m8!1m7!1sCAoSLEFGMVFpcE1WZVplOVB1WTZ4eHM3Y1JiSVpZMlZfNHhzbXlTXzRPVHBOVU9n!2m2!1d22.939546!2d77.612433!3f143.81924200358435!4f16.446068450482613!5f0.7820865974627469",
       id: 20,
     },
 
@@ -205,6 +234,7 @@
         "A concentration of largely unexcavated archaeological, historic and living cultural heritage properties cradled in an impressive landscape which includes prehistoric (chalcolithic) sites, a hill fortress of an early Hindu capital, and remains of the 16th-century capital of the state of Gujarat. The site also includes, among other vestiges, fortifications, palaces, religious buildings, residential precincts, agricultural structures and water installations, from the 8th to 14th centuries. The Kalikamata Temple on top of Pavagadh Hill is considered to be an important shrine, attracting large numbers of pilgrims throughout the year. The site is the only complete and unchanged Islamic pre-Mughal city.",
       longitude: 73.53333333,
       latitude: 22.48333333,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141560091!6m8!1m7!1sCAoSLEFGMVFpcE00aVNySjFfT2tYZV9URXIwUlFXZUw5bHpPcmtFYzUxQThqaUtE!2m2!1d22.4842301!2d73.5318673!3f149.28546531124158!4f-3.128567307762836!5f0.7820865974627469",
       id: 21,
     },
 
@@ -213,6 +243,7 @@
         "The austere, grandiose site of Hampi was the last capital of the last great Hindu Kingdom of Vijayanagar. Its fabulously rich princes built Dravidian temples and palaces which won the admiration of travellers between the 14th and 16th centuries. Conquered by the Deccan Muslim confederacy in 1565, the city was pillaged over a period of six months before being abandoned.",
       longitude: 76.47167,
       latitude: 15.31444,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141650226!6m8!1m7!1sR0sg-7sceod_dCY7lA2jpQ!2m2!1d15.33417053159651!2d76.45924015281275!3f245.7447580124356!4f-9.810433015572585!5f0.7820865974627469",
       id: 22,
     },
 
@@ -222,6 +253,7 @@
           "The Nalanda Mahavihara site is in the State of Bihar, in north-eastern India. It comprises the archaeological remains of a monastic and scholastic institution dating from the 3rd century BCE to the 13th century CE. It includes stupas, shrines, viharas (residential and educational buildings) and important art works in stucco, stone and metal. Nalanda stands out as the most ancient university of the Indian Subcontinent. It engaged in the organized transmission of knowledge over an uninterrupted period of 800 years. The historical development of the site testifies to the development of Buddhism into a religion and the flourishing of monastic and educational traditions.",
         longitude: 85.44388889,
         latitude: 25.13666667,
+        src: "https://www.google.com/maps/embed?pb=!4v1668141831589!6m8!1m7!1sCAoSLEFGMVFpcFBtZi04VVdCaFpnSDNRTmxhNlFnS3p1UmptVDdHRlR1Yk1OaGFo!2m2!1d25.1359624!2d85.4427304!3f102.78053811486242!4f0!5f0.7820865974627469",
         id: 23,
       },
 
@@ -230,6 +262,7 @@
         "Rani-ki-Vav, on the banks of the Saraswati River, was initially built as a memorial to a king in the 11th century AD. Stepwells are a distinctive form of subterranean water resource and storage systems on the Indian subcontinent, and have been constructed since the 3rd millennium BC. They evolved over time from what was basically a pit in sandy soil towards elaborate multi-storey works of art and architecture. Rani-ki-Vav was built at the height of craftsmens ability in stepwell construction and the Maru-Gurjara architectural style, reflecting mastery of this complex technique and great beauty of detail and proportions. Designed as an inverted temple highlighting the sanctity of water, it is divided into seven levels of stairs with sculptural panels of high artistic quality; more than 500 principle sculptures and over a thousand minor ones combine religious, mythological and secular imagery, often referencing literary works. The fourth level is the deepest and leads into a rectangular tank 9.5m by 9.4m, at a depth of 23m. The well is located at the westernmost end of the property and consists of a shaft 10m in diameter and 30m deep.",
       longitude: 72.10166667,
       latitude: 23.85888889,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141831589!6m8!1m7!1sCAoSLEFGMVFpcFBtZi04VVdCaFpnSDNRTmxhNlFnS3p1UmptVDdHRlR1Yk1OaGFo!2m2!1d25.1359624!2d85.4427304!3f102.78053811486242!4f0!5f0.7820865974627469",
       id: 24,
     },
 
@@ -238,6 +271,7 @@
         "The Great Living Chola Temples were built by kings of the Chola Empire, which stretched over all of south India and the neighbouring islands. The site includes three great 11th- and 12th-century Temples: the Brihadisvara Temple at Thanjavur, the Brihadisvara Temple at Gangaikondacholisvaram and the Airavatesvara Temple at Darasuram. The Temple of Gangaikondacholisvaram, built by Rajendra I, was completed in 1035. Its 53-m vimana (sanctum tower) has recessed corners and a graceful upward curving movement, contrasting with the straight and severe tower at Thanjavur. The Airavatesvara temple complex, built by Rajaraja II, at Darasuram features a 24-m vimana and a stone image of Shiva. The temples testify to the brilliant achievements of the Chola in architecture, sculpture, painting and bronze casting.",
       longitude: 79.1325,
       latitude: 10.78305556,
+      src: "https://www.google.com/maps/embed?pb=!4v1668142014211!6m8!1m7!1sCAoSLEFGMVFpcE5LSkVoOGVXY2V0QlAxZXlyNTcyYWFWX08xTTY4ZnFHY25DWXVT!2m2!1d10.94826516430883!2d79.35668081045151!3f348.24735237054074!4f19.667442917205477!5f0.7820865974627469",
       id: 25,
     },
     "Ajanta Caves": {
@@ -245,6 +279,7 @@
         "The Great Living Chola Temples were built by kings of the Chola Empire, which stretched over all of south India and the neighbouring islands. The site includes three great 11th- and 12th-century Temples: the Brihadisvara Temple at Thanjavur, the Brihadisvara Temple at Gangaikondacholisvaram and the Airavatesvara Temple at Darasuram. The Temple of Gangaikondacholisvaram, built by Rajendra I, was completed in 1035. Its 53-m vimana (sanctum tower) has recessed corners and a graceful upward curving movement, contrasting with the straight and severe tower at Thanjavur. The Airavatesvara temple complex, built by Rajaraja II, at Darasuram features a 24-m vimana and a stone image of Shiva. The temples testify to the brilliant achievements of the Chola in architecture, sculpture, painting and bronze casting.",
       longitude: 79.1325,
       latitude: 10.78305556,
+      src: "https://www.google.com/maps/embed?pb=!4v1668142073817!6m8!1m7!1sCAoSLEFGMVFpcFBSelUwNlpqVUgxeThHbVFyQ1pWODlzcHVZbF9xMWRxM3ppY2RU!2m2!1d20.5518603!2d75.7032521!3f163.51954526983127!4f10.165452931366119!5f0.7820865974627469",
       id: 26,
     },
 
@@ -253,14 +288,16 @@
         "The serial site, situated in the state of Rajastahan, includes six majestic forts in Chittorgarh; Kumbhalgarh; Sawai Madhopur; Jhalawar; Jaipur, and Jaisalmer. The ecclectic architecture of the forts, some up to 20 kilometres in circumference, bears testimony to the power of the Rajput princely states that flourished in the region from the 8th to the 18th centuries. Enclosed within defensive walls are major urban centres, palaces, trading centres and other buildings including temples that often predate the fortifications within which developed an elaborate courtly culture that supported learning, music and the arts. Some of the urban centres enclosed in the fortifications have survived, as have many of the site's temples and other sacred buildings. The forts use the natural defenses offered by the landscape: hills, deserts, rivers, and dense forests. They also feature extensive water harvesting structures, largely still in use today.",
       longitude: 74.64611111,
       latitude: 24.88333333,
+      src: "https://www.google.com/maps/embed?pb=!4v1668142073817!6m8!1m7!1sCAoSLEFGMVFpcFBSelUwNlpqVUgxeThHbVFyQ1pWODlzcHVZbF9xMWRxM3ppY2RU!2m2!1d20.5518603!2d75.7032521!3f163.51954526983127!4f10.165452931366119!5f0.7820865974627469",
       id: 27,
     },
 
     "Mahabodhi Temple Complex at Bodh Gaya": {
       short_desc:
-        "The Mahabodhi Temple Complex is one of the four holy sites related to the life of the Lord Buddha, and particularly to the attainment of Enlightenment. The first temple was built by Emperor Asoka in the 3rd century B.C., and the present temple dates from the 5th or 6th centuries. It is one of the earliest Buddhist temples built entirely in brick, still standing in India, from the late Gupta period.",
+        "is one of the four holy sites related to the life of the Lord Buddha, and particularly to the attainment of Enlightenment. The first temple was built by Emperor Asoka in the 3rd century B.C., and the present temple dates from the 5th or 6th centuries. It is one of the earliest Buddhist temples built entirely in brick, still standing in India, from the late Gupta period.",
       longitude: 84.99389,
       latitude: 24.69528,
+      src: "https://www.google.com/maps/embed?pb=!4v1668142320328!6m8!1m7!1sCAoSLEFGMVFpcE9GZlNtZEk3LV80VjI2TTBCNkNDRVhCYzEtU3VVdXJKYUFxekl5!2m2!1d24.69578553424373!2d84.99157706687849!3f81.2729208388024!4f11.313820200392797!5f0.7820865974627469",
       id: 28,
     },
     "Churches and Convents of Goa": {
@@ -268,6 +305,7 @@
         "The churches and convents of Goa, the former capital of the Portuguese Indies  particularly the Church of Bom Jesus, which contains the tomb of St Francis-Xavier  illustrate the evangelization of Asia. These monuments were influential in spreading forms of Manueline, Mannerist and Baroque art in all the countries of Asia where missions were established.",
       longitude: 73.91167,
       latitude: 15.50222,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141403245!6m8!1m7!1sCAoSLEFGMVFpcFBjck1nbWt1SzFLRXJlNFJuQ0hXdW41WDd3ZENKRW1ueTYxRU5C!2m2!1d15.476512!2d73.80955700000001!3f14.24616972950299!4f11.792626195555869!5f1.9587109090973311",
       id: 29,
     },
     "Western Ghats": {
@@ -275,6 +313,7 @@
         "Older than the Himalaya mountains, the mountain chain of the Western Ghats represents geomorphic features of immense importance with unique biophysical and ecological processes. The site's high montane forest ecosystems influence the Indian monsoon weather pattern. Moderating the tropical climate of the region, the site presents one of the best examples of the monsoon system on the planet. It also has an exceptionally high level of biological diversity and endemism and is recognized as one of the world's eight hottest hotspots of biological diversity. The forests of the site include some of the best representatives of non-equatorial tropical evergreen forests anywhere and are home to at least 325 globally threatened flora, fauna, bird, amphibian, reptile and fish species.",
       longitude: 77.24972222,
       latitude: 8.529722222,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141403245!6m8!1m7!1sCAoSLEFGMVFpcFBjck1nbWt1SzFLRXJlNFJuQ0hXdW41WDd3ZENKRW1ueTYxRU5C!2m2!1d15.476512!2d73.80955700000001!3f14.24616972950299!4f11.792626195555869!5f1.9587109090973311",
       id: 30,
     },
     "Taj Mahal": {
@@ -282,18 +321,34 @@
         "An immense mausoleum of white marble, built in Agra between 1631 and 1648 by order of the Mughal emperor Shah Jahan in memory of his favourite wife, the Taj Mahal is the jewel of Muslim art in India and one of the universally admired masterpieces of the world's heritage.",
       longitude: 78.04222,
       latitude: 27.17417,
+      src: "https://www.google.com/maps/embed?pb=!4v1668141035859!6m8!1m7!1sMDg3_JZdmTNXF88D_nGqrA!2m2!1d27.17401690344663!2d78.04199342698348!3f3.9555737217004667!4f9.33727501612293!5f0.7820865974627469",
       id: 31,
     },
     "Red Fort Complex": {
       short_desc:
-        "The Red Fort Complex was built as the palace fort of Shahjahanabad  the new capital of the fifth Mughal Emperor of India, Shah Jahan. Named for its massive enclosing walls of red sandstone, it is adjacent to an older fort, the Salimgarh, built by Islam Shah Suri in 1546, with which it forms the Red Fort Complex. The private apartments consist of a row of pavilions connected by a continuous water channel, known as the Nahr-i-Behisht (Stream of Paradise). The Red Fort is considered to represent the zenith of Mughal creativity which, under the Shah Jahan, was brought to a new level of refinement. The planning of the palace is based on Islamic prototypes, but each pavilion reveals architectural elements typical of Mughal building, reflecting a fusion of Persian, Timurid and Hindu traditions The Red Fort's innovative planning and architectural style, including the garden design, strongly influenced later buildings and gardens in Rajasthan, Delhi, Agra and further afield.",
+        "was built as the palace fort of Shahjahanabad  the new capital of the fifth Mughal Emperor of India, Shah Jahan. Named for its massive enclosing walls of red sandstone, it is adjacent to an older fort, the Salimgarh, built by Islam Shah Suri in 1546, with which it forms the Red Fort Complex. The private apartments consist of a row of pavilions connected by a continuous water channel, known as the Nahr-i-Behisht (Stream of Paradise). The Red Fort is considered to represent the zenith of Mughal creativity which, under the Shah Jahan, was brought to a new level of refinement. The planning of the palace is based on Islamic prototypes, but each pavilion reveals architectural elements typical of Mughal building, reflecting a fusion of Persian, Timurid and Hindu traditions The Red Fort's innovative planning and architectural style, including the garden design, strongly influenced later buildings and gardens in Rajasthan, Delhi, Agra and further afield.",
       longitude: 77.24083333,
       latitude: 28.65555556,
+      src: "https://www.google.com/maps/embed?pb=!4v1668140708751!6m8!1m7!1sCAoSLEFGMVFpcE9TTklhVXJWS1hmdTkxTURIZ2thXzlkbXpqSHVQSm8tV1BKTmdS!2m2!1d28.656237!2d77.241018!3f352.9302510772226!4f8.50548527593699!5f0.7820865974627469",
       id: 32,
     },
   };
 
   let keys = Object.keys(dict);
+
+  function toggleStreetView(id) {
+    // let view = document.getElementById("#streetView");
+    // // let iframe = document.getElementsByClassName("iframe");
+    // if (view.style.display && iframe.style.display === "none") {
+    //   view.style.display = "block";
+    //   // iframe.style.display = "block";
+    // } else {
+    //   view.style.display = "none";
+    //   // iframe.style.display = "none";
+    // }
+  }
+
+  let streetViewId;
 
   //intialize map
   function initMap() {
@@ -328,9 +383,27 @@
 
       google.maps.event.addListener(marker, "mousedown", function () {
         infowindow.open(marker.get("map"), marker);
-        var id = marker.get("id");
-        infowindow.setContent(dict[id]["short_desc"]);
+        var marker_id = marker.get("id");
+        streetViewId = marker_id;
+
+        var content = dict[marker_id]["short_desc"];
+
+        var btn =
+          '\n\n<button class="btn" id="street_btn" onclick="toggleStreetView(streetViewId)">Get a 360 experience?</button>';
+        let newContent =
+          `<h4><strong>${marker_id}</strong></h4>` + content + btn;
+
+        infowindow.setContent(newContent);
         infowindow.open(map, this);
+
+        google.maps.event.addListener(infowindow, "domready", function () {
+          $(".btn").click(function () {
+            $("#streetView").show();
+            $(".iframe").show();
+            console.log(streetViewId);
+            $(".iframe").attr("src", dict[streetViewId]["src"]);
+          });
+        });
       });
 
       id++;
@@ -344,16 +417,7 @@
         );
       }
     }
-
-    // addMarker({
-    //   lat: dict["Taj Mahal"]["latitude"],
-    //   lng: dict["Taj Mahal"]["longitude"],
-    // });
-
-    // The marker, positioned at Uluru
   }
 
   window.initMap = initMap;
-
-  // console.log(dict["Red Fort Complex"]["short_desc"]);
 </script>
