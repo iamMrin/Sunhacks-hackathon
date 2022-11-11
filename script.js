@@ -12,6 +12,7 @@ $(document).ready(function () {
 
   $("html").on("keydown", function (event) {
     if (event.key == "Escape" && $(".iframe").is(":visible")) {
+      $("#map").animate({ opacity: 1 });
       $(".iframe").hide();
       $("#streetView").hide();
     }

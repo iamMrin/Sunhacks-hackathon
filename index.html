@@ -332,8 +332,18 @@
       src: "https://www.google.com/maps/embed?pb=!4v1668140708751!6m8!1m7!1sCAoSLEFGMVFpcE9TTklhVXJWS1hmdTkxTURIZ2thXzlkbXpqSHVQSm8tV1BKTmdS!2m2!1d28.656237!2d77.241018!3f352.9302510772226!4f8.50548527593699!5f0.7820865974627469",
       id: 32,
     },
+
+    "Rock Shelters of Bhimbetka": {
+      short_desc:
+        "The Rock Shelters of Bhimbetka are a series of caves and shelters in the Vindhya Range of central India. They contain the largest and most diverse collection of paintings in the world, dating from the Upper Paleolithic to the early historic period. The paintings are of animals, including the bison, rhinoceros, elephant, wild boar, deer, antelope, and tiger, as well as human figures. The paintings are of exceptional quality and are the earliest known examples of figurative art in the Indian subcontinent. The site is also of great importance for the study of prehistoric life in India, and for the study of the evolution of human behaviour.",
+      longitude: 77.24083333,
+      latitude: 28.65555556,
+      id: 33,
+    },
+    //automatically read and write the contents of the file on ./webscrapper.py(dict) to index.html
   };
 
+  //do not move
   let keys = Object.keys(dict);
 
   function toggleStreetView(id) {
@@ -400,8 +410,9 @@
           $(".btn").click(function () {
             $("#streetView").show();
             $(".iframe").show();
-            console.log(streetViewId);
+
             $(".iframe").attr("src", dict[streetViewId]["src"]);
+            $("#map").animate({ opacity: 0.3 });
           });
         });
       });
