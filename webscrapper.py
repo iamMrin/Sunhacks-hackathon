@@ -6,6 +6,7 @@ name=input("Enter Place: ")
 
 req = requests.get("https://en.wikipedia.org/wiki/"+name).text
 req1=requests.get("https://simple.wikipedia.org/wiki/"+name).text
+req2=requests.get("https://
 soup = bs(req, 'html.parser')
 soup1 = bs(req1, 'html.parser')
 latitude = soup.find("span", {"class": "latitude"})
